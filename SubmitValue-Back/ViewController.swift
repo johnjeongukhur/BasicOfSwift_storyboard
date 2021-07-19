@@ -25,20 +25,22 @@ class ViewController: UIViewController {
     // 화면이 표시될 때마다 실행되는 메소드
     override func viewWillAppear(_ animated: Bool) {
         
-        // AppDelegate 객체의 인스턴스를 가져온다.
-        let ad = UIApplication.shared.delegate as? AppDelegate
+        // User Default 객체의 인스턴스를 가져온다
+        let ud = UserDefaults.standard
         
-        if let email = ad?.paramEmail { // 이메일 표시
+        if let email = ud.string(forKey: "email") {
             resultEmail.text = email
         }
-        if let update = ad?.paramUpdate { // 자동 갱신 여부 표시
-            resultUpdate.text = update == true ? "자동갱신":"자동갱신안함"
-        }
-        if let interval = ad?.paramInterval { // 갱신 주기 표시
-            resultInterval.text = "\(Int(interval))분마다"
-        }
+        
+        let update = ud.bool(forKey: "isUpdate")
+        resultUpdate.text = (update == true ? "자동갱신":"자동갱신안함")
+        
+        let interval = ud.double(forKey: "interval")
+        resultInterval.text = "\(Int(interval))분마다"
         
     }
     
 }
+
+
 
