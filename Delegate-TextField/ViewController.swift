@@ -45,6 +45,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.tf.delegate = self
     }
     
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("텍스트 필드의 편집이 시작됩니다.")
+        return true // false를 리턴하면 편집되지 않는다.
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("텍스트 필드의 편집이 시작되었습니다.")
+    }
+    
     
     @IBAction func confirm(_ sender: Any) {
         // 텍스트 필드를 최초 응답자 객체에서 해제
