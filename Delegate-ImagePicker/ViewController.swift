@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet var imgView: UIImageView!
     @IBAction func pick(_ sender: Any) {
@@ -22,7 +22,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(picker, animated: false)
     }
     
-    // 이미지 피커에서 이미지를 선택했을 때 호출되는 메소드
+}
+
+//MARK: - 이미지 피커 컨트롤러 델리게이트 메소드
+extension ViewController: UIImagePickerControllerDelegate {
+    //MARK: - 이미지 취소 메소드
+    // 이미지 피커에서 이미지를 선택하지 않고 취소했을 때 호출되는 메소드
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // 이미지 피커 컨트롤러 창 닫기
         self.dismiss(animated: false) { () in
@@ -36,17 +41,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //MARK: - 이미지 선택 메소드
     // 이미지 피커에서 이미지를 선택했을 때 호출되는 메소드
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // 이미지 피커 컨트롤러 창 닫기
         picker.dismiss(animated: false) { () in
             // 이미지를 이미지 뷰에 표시
-            let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            let img = info[UIImagePickerController.InfoKey.editedImage.rawValue] as? UIImage
             self.imgView.image = img
         }
-        
     }
     
+}
+
+//MARK: - 내비게이션 컨트롤러 델리게이트 메소드
+extension ViewController: UINavigationControllerDelegate {
+    
+}
+//MARK: - 텍스트필드 델리게이트 메소드
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
     
 }
 
