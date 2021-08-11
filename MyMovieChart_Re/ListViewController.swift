@@ -35,31 +35,54 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         }
     
-    //MARK: - 생성할 목록의 길이를 반환
-    // numberOfRowsInSection
+    //MARK: - numberOfRowsInSection
+    // 생성할 목록의 길이를 반환
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.list.count
     }
     
-    //MARK: - 셀 객체를 생성하여 콘텐츠를 구성한 다음 반환
-    // cellForRowAt
+    //MARK: - cellForRowAt
+    // 셀 객체를 생성하여 콘텐츠를 구성한 다음 반환
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 주어진 행에 맞는 데이터 소스를 읽어온다.
         let row = self.list[indexPath.row]
         
         // 테이블 셀 객체를 직접 생성하는 대신 큐로부터 가져옴
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
-        cell.textLabel?.text = row.title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")! as! MovieCell // as! MovieCell 추가됨
         
-        // 1, 추가사항 : 서브타이틀에 데이터 연결
-        // 보조 설명을 덧붙이기 위한 용도
-        cell.detailTextLabel?.text = row.description
+        // ============== 여기부터 변경 내용 ==============
+        // 데이터 소스에 저장된 값을 각 아울렛 변수에 할당
+        cell.title?.text = row.title
+        cell.desc?.text = row.description
+        cell.opendate?.text = row.opendate
+        cell.rating?.text = "\(row.rating!)"
+        // ============== 여기까지 내용 변경됨 ==============
         
+        /* ============== 변경 전 ==============
+        // ---> 추가되는 부분 시작
+        // 영화제목이 표시될 레이블을 title 변수로 받음
+        let title = cell.viewWithTag(101) as? UILabel
+        // 영화요약이 표시될 레이블을 desc 변수로 받음
+        let desc = cell.viewWithTag(102) as? UILabel
+        // 영화 개봉일이 표시될 레이블을 opendate 변수로 받음
+        let opendate = cell.viewWithTag(103) as? UILabel
+        // 영화 별점이 표시될 레이블을 rating 변수로 받음
+        let rating = cell.viewWithTag(104) as? UILabel
+        
+        // 데이터 소스에 저장된 값을 각 레이블 변수에 할당
+        title?.text = row.title
+        desc?.text = row.description
+        opendate?.text = row.opendate
+        rating?.text = "\(row.rating!)"
+        // <--- 추가되는 부분 끝
+        */
+        
+        // 구성될 셀을 반환함
         return cell
     }
     
-    //MARK: - 사용자가 셀을 선택했을 때 실행할 액션을 정의
-    // didSelectRowAt
+    //MARK: - didSelectRowAt
+    // 사용자가 셀을 선택했을 때 실행할 액션을 정의
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("선택된 행은 \(indexPath.row) 번째 행입니다")
     }
