@@ -58,25 +58,6 @@ class ListViewController: UITableViewController {
         cell.rating?.text = "\(row.rating!)"
         // ============== 여기까지 내용 변경됨 ==============
         
-        /* ============== 변경 전 ==============
-        // ---> 추가되는 부분 시작
-        // 영화제목이 표시될 레이블을 title 변수로 받음
-        let title = cell.viewWithTag(101) as? UILabel
-        // 영화요약이 표시될 레이블을 desc 변수로 받음
-        let desc = cell.viewWithTag(102) as? UILabel
-        // 영화 개봉일이 표시될 레이블을 opendate 변수로 받음
-        let opendate = cell.viewWithTag(103) as? UILabel
-        // 영화 별점이 표시될 레이블을 rating 변수로 받음
-        let rating = cell.viewWithTag(104) as? UILabel
-        
-        // 데이터 소스에 저장된 값을 각 레이블 변수에 할당
-        title?.text = row.title
-        desc?.text = row.description
-        opendate?.text = row.opendate
-        rating?.text = "\(row.rating!)"
-        // <--- 추가되는 부분 끝
-        */
-        
         // 구성될 셀을 반환함
         return cell
     }

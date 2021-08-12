@@ -46,6 +46,7 @@
 		5666F8E926C2562D009F9C43 = {
 			isa = PBXGroup;
 			children = (
+				5666F90F26C53F82009F9C43 /* Resources */,
 				5666F8F426C2562D009F9C43 /* MyMovieChart_Re */,
 				5666F8F326C2562D009F9C43 /* Products */,
 			);
@@ -74,6 +75,13 @@
 				5666F90326C25631009F9C43 /* Info.plist */,
 			);
 			path = MyMovieChart_Re;
+			sourceTree = "<group>";
+		};
+		5666F90F26C53F82009F9C43 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
